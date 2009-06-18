@@ -4,8 +4,9 @@ SearchScope
 A simple extension to ActiveRecord to allow scoped search. You can define a number search types that will use different selection of fields.
 
 I wouldn't want to use this to build my google killer search engine on but might be useful for either:
+
 * small apps / infrequently searched models
-* 'placeholder' search funtionality until you move up to proper search like hyperestraier, ferret, solr, sphinx etc... 
+* placeholder search funtionality until you move up to proper search like hyperestraier, ferret, solr, sphinx etc... 
 
 Example
 =======
@@ -18,6 +19,7 @@ class Hangup < ActiveRecord::Base
       :related_people => [:inherited_from,:most_annoys], 
       :name           => [:name]
      }
+
 end
 
 # Anything containing the text cleanliness
@@ -27,7 +29,7 @@ Hangup.search('cleanliness')
 Hangup.search('mike',:type => :related_people) 
 
 # The above query will result in the following SQL being generated
-SELECT * FROM `hangups` WHERE ((lower(`hangups`.`inherited_from`) like '%mike%' OR lower(`events`.`most_annoys`) like '%mike%'))
+SELECT * FROM `hangups` WHERE ((lower(`hangups`.`inherited_from`) like '%mike%' OR lower(`hangups`.`most_annoys`) like '%mike%'))
 
 # Internally this uses named_scope so you can do all the cool stuff that allows
 Hangup.search('teeth').find(:first, :order => :severity)
