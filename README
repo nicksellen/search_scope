@@ -6,7 +6,7 @@ A simple extension to ActiveRecord to allow scoped search. You can define a numb
 I wouldn't want to use this to build my google killer search engine on but might be useful for either:
 
 * small apps / infrequently searched models
-* placeholder search funtionality until you move up to proper search like hyperestraier, ferret, solr, sphinx etc... 
+* placeholder search funtionality until you move up to proper fulltext search like hyperestraier, ferret, solr, sphinx etc... 
 
 Example
 =======
