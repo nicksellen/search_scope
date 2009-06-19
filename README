@@ -22,11 +22,14 @@ class Hangup < ActiveRecord::Base
 
 end
 
-# Anything containing the text cleanliness
-Hangup.search('cleanliness') 
+# Anything hangups containing the text cleanliness
+Hangup.search 'cleanliness'
 
-# Anything that was either inherited from or annoys someone called mike
-Hangup.search('mike',:type => :related_people) 
+# Search multiple terms  - careful as you'll generate (number of terms) * (number of fields) LIKE clauses
+Hangup.search %w[stickers feathers]
+
+# Anything hangups that were either inherited from or annoy someone called mike
+Hangup.search 'mike',:type => :related_people
 
 # The above query will result in the following SQL being generated
 SELECT * FROM `hangups` WHERE ((lower(`hangups`.`inherited_from`) like '%mike%' OR lower(`hangups`.`most_annoys`) like '%mike%'))
